@@ -16,6 +16,14 @@
             "Gembla\\TrafficRotator\\": "src/"
         }
     },
+    "authors": [
+        {
+            "name": "Gembla",
+            "email": "info@gembla.info",
+            "homepage": "https://gembla.info",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": ">=8.0"
     }

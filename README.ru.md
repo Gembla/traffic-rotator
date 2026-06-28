@@ -1,0 +1,71 @@
+[English](README.md) | Русский
+
+<p align="center">
+<img src="logo.webp" alt="Gembla Traffic Rotator Logo" width="150">
+<br><br>
+<a href="https://t.me/gembla_info"><img src="https://poser.pugx.org/gembla/traffic-rotator/v" alt="Latest Version"></a>
+  <a href="https://t.me/gembla_info"><img src="https://poser.pugx.org/gembla/traffic-rotator/downloads" alt="Total Downloads"></a>
+  <a href="https://t.me/gembla_info"><img src="https://poser.pugx.org/gembla/traffic-rotator/license" alt="License"></a>
+  <a href="https://t.me/gembla_info"><img src="https://img.shields.io/badge/Telegram-Channel-blue?style=flat&logo=Telegram" alt="Telegram"></a>
+</p>
+
+# 🎰 Gambling Traffic Rotator & Micro-Smartlink
+
+Простой, быстрый и эффективный PHP-ротатор трафика (Smartlink / ТДС на минималках) для арбитражников и рефоводов в гемблинг-вертикали. 
+
+Позволяет распределять поток пользователей (игроков) по разным офферам, казино или посадочным страницам (landing pages) на основе заданных весов (процентного соотношения).
+
+## 🚀 Быстрый запуск и проверка (без установки)
+
+Вы можете протестировать работу ротатора прямо сейчас на своем компьютере без скачивания сторонних библиотек:
+
+1. Склонируйте этот репозиторий.
+2. Сгенерируйте автозагрузчик (выполните в терминале проекта):
+   ```bash
+   composer dump-autoload
+   ```
+3. Запустите встроенный быстрый веб-сервер PHP:
+   ```bash
+   php -S localhost:8000
+   ```
+4. Откройте в браузере `http://localhost:8000`. Скрипт `index.php` мгновенно сработает и перенаправит вас на один из тестовых офферов.
+
+## 📦 Установка в свой проект
+
+Когда вы будете готовы внедрить ротатор в свою связку, установите пакет через Composer:
+
+```bash
+composer require gembla/traffic-rotator
+```
+
+## 💻 Использование в коде
+
+```php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Gembla\TrafficRotator\Rotator;
+
+$rotator = new Rotator();
+
+// Добавляем ссылки на офферы казино и их "вес" (вероятность)
+// В данном примере: 70% трафика уйдет на первый оффер, 30% — на второй
+$rotator->addOffer('https://casino-brand-a.com', 70);
+$rotator->addOffer('https://casino-brand-b.com', 30);
+
+// Автоматически выбирает ссылку и делает HTTP-редирект (header Location)
+$rotator->redirect();
+```
+
+## 📂 Структура проекта
+- `src/Rotator.php` — основная логика распределения трафика.
+- `index.php` — готовый пример для быстрого теста.
+- `composer.json` — конфигурация автозагрузки PSR-4 под неймспейсом `Gembla\TrafficRotator`
+
+## 📄 Лицензия
+
+Этот проект распространяется под лицензией MIT. Вы можете свободно использовать его в своих связках и коммерческих проектах.
+
+
+

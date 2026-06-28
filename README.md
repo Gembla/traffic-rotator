@@ -1,37 +1,44 @@
-# 🎰 Gambling Traffic Rotator & Micro-Smartlink
+English | [Русский](README.ru.md)
 
 <p align="center">
-  <img src="logo.webp" alt="Gembla Traffic Rotator Logo" width="150">
+<img src="logo.webp" alt="Gembla Traffic Rotator Logo" width="150">
+<br><br>
+<a href="https://t.me/gembla_info"><img src="https://poser.pugx.org/gembla/traffic-rotator/v" alt="Latest Version"></a>
+  <a href="https://t.me/gembla_info"><img src="https://poser.pugx.org/gembla/traffic-rotator/downloads" alt="Total Downloads"></a>
+  <a href="https://t.me/gembla_info"><img src="https://poser.pugx.org/gembla/traffic-rotator/license" alt="License"></a>
+  <a href="https://t.me/gembla_info"><img src="https://img.shields.io/badge/Telegram-Channel-blue?style=flat&logo=Telegram" alt="Telegram"></a>
 </p>
 
-Простой, быстрый и эффективный PHP-ротатор трафика (Smartlink / ТДС на минималках) для арбитражников и рефоводов в гемблинг-вертикали. 
+# 🎰 Gambling Traffic Rotator & Micro-Smartlink
 
-Позволяет распределять поток пользователей (игроков) по разным офферам, казино или посадочным страницам (landing pages) на основе заданных весов (процентного соотношения).
+A simple, fast, and efficient PHP traffic rotator (a lightweight TDS / Smartlink alternative) designed for affiliate marketers and referral publishers in the gambling vertical.
 
-## 🚀 Быстрый запуск и проверка (без установки)
+It allows you to distribute user traffic (players) across multiple offers, casinos, or landing pages based on predefined weights (percentage ratios).
 
-Вы можете протестировать работу ротатора прямо сейчас на своем компьютере без скачивания сторонних библиотек:
+## 🚀 Quick Start & Testing (No Setup Required)
 
-1. Склонируйте этот репозиторий.
-2. Сгенерируйте автозагрузчик (выполните в терминале проекта):
+You can test the rotator locally on your machine right away without downloading any external third-party libraries:
+
+1. Clone this repository.
+2. Generate the autoloader by running the following command in your project terminal:
    ```bash
    composer dump-autoload
    ```
-3. Запустите встроенный быстрый веб-сервер PHP:
+3. Start the built-in PHP development web server:
    ```bash
    php -S localhost:8000
    ```
-4. Откройте в браузере `http://localhost:8000`. Скрипт `index.php` мгновенно сработает и перенаправит вас на один из тестовых офферов.
+4. Open `http://localhost:8000` in your browser. The `index.php` script will execute instantly and redirect you to one of the test offers.
 
-## 📦 Установка в свой проект
+## 📦 Installation
 
-Когда вы будете готовы внедрить ротатор в свою связку, установите пакет через Composer:
+When you are ready to integrate the rotator into your funnel, install the package via Composer:
 
 ```bash
 composer require gembla/traffic-rotator
 ```
 
-## 💻 Использование в коде
+## 💻 Code Usage
 
 ```php
 <?php
@@ -40,22 +47,23 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Gembla\TrafficRotator\Rotator;
 
-\$rotator = new Rotator();
+$rotator = new Rotator();
 
-// Добавляем ссылки на офферы казино и их "вес" (вероятность)
-// В данном примере: 70% трафика уйдет на первый оффер, 30% — на второй
-\$rotator->addOffer('https://casino-brand-a.com', 70);
-\$rotator->addOffer('https://casino-brand-b.com', 30);
+// Add casino offer URLs and their respective weights (probabilities)
+// In this example: 70% of traffic goes to Offer A, 30% goes to Offer B
+$rotator->addOffer('https://casino-brand-a.com', 70);
+$rotator->addOffer('https://casino-brand-b.com', 30);
 
-// Автоматически выбирает ссылку и делает HTTP-редирект (header Location)
-\$rotator->redirect();
+// Automatically selects a URL and performs an HTTP redirect (Location header)
+$rotator->redirect();
 ```
 
-## 📂 Структура проекта
-- `src/Rotator.php` — основная логика распределения трафика.
-- `index.php` — готовый пример для быстрого теста.
-- `composer.json` — конфигурация автозагрузки PSR-4 под неймспейсом `Gembla\TrafficRotator`.
+## 📂 Project Structure
 
-## 📄 Лицензия
+- `src/Rotator.php` — Core traffic distribution logic.
+- `index.php` — Ready-to-use example for quick testing.
+- `composer.json` — Composer configuration with PSR-4 autoloading under the `Gembla\TrafficRotator` namespace
 
-Этот проект распространяется под лицензией MIT. Вы можете свободно использовать его в своих связках и коммерческих проектах.
+## 📄 License
+
+This project is open-source software licensed under the MIT License. You are free to use it in your marketing setups and commercial projects.
