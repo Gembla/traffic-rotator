@@ -1,9 +1,5 @@
 # 🎰 Gambling Traffic Rotator & Micro-Smartlink
 
-[![Latest Stable Version](https://shields.io)](https://packagist.org)
-[![License](https://shields.io)](LICENSE)
-[![PHP Version](https://shields.io)](https://php.net)
-
 Простой, быстрый и эффективный PHP-ротатор трафика (Smartlink / ТДС на минималках) для арбитражников и рефоводов в гемблинг-вертикали. 
 
 Позволяет распределять поток пользователей (игроков) по разным офферам, казино или посадочным страницам (landing pages) на основе заданных весов (процентного соотношения).
