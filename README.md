@@ -1,2 +1,52 @@
-# traffic-rotator
-A micro smartlink and traffic rotator for gambling affiliate marketing
+# 🎰 Gambling Traffic Rotator & Micro-Smartlink
+
+[![Latest Stable Version](https://shields.io)](https://packagist.org)
+[![License](https://shields.io)](LICENSE)
+[![PHP Version](https://shields.io)](https://php.net)
+
+Простой, быстрый и эффективный PHP-ротатор трафика (Smartlink / ТДС на минималках) для арбитражников и рефоводов в гемблинг-вертикали. 
+
+Позволяет распределять поток пользователей (игроков) по разным офферам, казино или посадочным страницам (landing pages) на основе заданных весов (процентного соотношения).
+
+## 🚀 Возможности
+- 🎯 **Весовое распределение**: задавайте процент трафика для каждой ссылки (например, 70% на одно казино, 30% на другое).
+- ⚡ **Максимальная скорость**: работает без баз данных, не создает задержек при редиректе потенциального игрока.
+- 🛠️ **Легкая интеграция**: подключается одной строчкой через Composer в любой одностраничник или преленд.
+
+## 📦 Установка
+
+Установите пакет в свой проект с помощью Composer:
+
+```bash
+composer require gembla/traffic-rotator
+```
+
+## 💻 Использование
+
+Создайте файл `index.php` (или используйте в существующем скрипте распределения) и настройте потоки:
+
+```php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Gembla\TrafficRotator\Rotator;
+
+\$rotator = new Rotator();
+
+// Добавляем ссылки на офферы казино и их "вес" (вероятность)
+// В данном примере: 70% трафика уйдет на первый оффер, 30% — на второй
+\$rotator->addOffer('https://casino-brand-a.com', 70);
+\$rotator->addOffer('https://casino-brand-b.com', 30);
+
+// Автоматически выбирает ссылку и делает HTTP-редирект (header Location)
+\$rotator->redirect();
+```
+
+## 📂 Структура проекта
+- `src/Rotator.php` — основная логика распределения трафика.
+- `composer.json` — конфигурация автозагрузки PSR-4 под неймспейсом `Gembla\TrafficRotator`.
+
+## 📄 Лицензия
+
+Этот проект распространяется под лицензией MIT. Вы можете свободно использовать его в своих связках и коммерческих проектах.
