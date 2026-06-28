@@ -1,0 +1,14 @@
+{
+    "name": "gembla/traffic-rotator",
+    "description": "A micro smartlink and traffic rotator for gambling affiliate marketing",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Gembla\\TrafficRotator\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.0"
+    }
+}
