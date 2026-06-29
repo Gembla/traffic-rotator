@@ -15,7 +15,7 @@ A simple, fast, and efficient PHP traffic rotator (a lightweight Smartlink / TDS
 
 It allows you to distribute the flow of users (players) across various offers, casinos, or landing pages based on pre-configured weights (probability ratios).
 
-## Features
+## ⚡ Features
 
 * **Flexible Weight Distribution:** No need to strictly match a 100% total. Add any weights (e.g., 20, 50, 70), and the traffic will be proportionally distributed.
 * **Advanced Real IP Detection:** Automatically extracts genuine user IP addresses behind **Cloudflare** (`CF-Connecting-IP`), reverse proxies like **Nginx** (`X-Forwarded-For`), or standard environments.
