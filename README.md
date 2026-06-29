@@ -3,9 +3,9 @@ English | [Русский](README.ru.md)
 <p align="center">
 <img src="logo.webp" alt="Gembla Traffic Rotator Logo" width="150">
 <br><br>
-<a href="https://github.com/Gembla/traffic-rotator/releases/latest"><img src="https://poser.pugx.org/gembla/traffic-rotator/v" alt="Latest Version"></a>
-  <a href="https://github.com/Gembla/traffic-rotator/releases/latest"><img src="https://poser.pugx.org/gembla/traffic-rotator/downloads" alt="Total Downloads"></a>
-  <a href="https://github.com/Gembla/traffic-rotator/blob/main/LICENSE"><img src="https://poser.pugx.org/gembla/traffic-rotator/license" alt="License"></a>
+  <a href="https://packagist.org/packages/gembla/traffic-rotator"><img src="https://img.shields.io/packagist/v/gembla/traffic-rotator?style=flat" alt="Latest Version"></a>
+  <a href="https://packagist.org/packages/gembla/traffic-rotator"><img src="https://img.shields.io/packagist/dt/gembla/traffic-rotator?style=flat" alt="Total Downloads"></a>
+  <a href="https://github.com/Gembla/traffic-rotator/blob/main/LICENSE"><img src="https://img.shields.io/packagist/l/gembla/traffic-rotator?style=flat" alt="License"></a>
   <a href="https://t.me/gembla_info"><img src="https://img.shields.io/badge/Telegram-Channel-blue?style=flat&logo=Telegram" alt="Telegram"></a>
 </p>
 
@@ -21,6 +21,13 @@ It allows you to distribute the flow of users (players) across various offers, c
 * **Advanced Real IP Detection:** Automatically extracts genuine user IP addresses behind **Cloudflare** (`CF-Connecting-IP`), reverse proxies like **Nginx** (`X-Forwarded-For`), or standard environments.
 * **Fail-Safe Redirects:** If HTTP headers have already been sent by your framework or server, the library automatically falls back to an HTML/JavaScript redirect instead of crashing.
 * **Optional Logging:** Logging is disabled by default. The script will not create unnecessary files or consume disk resources unless you explicitly pass a file path to the class constructor.
+
+## ✅ Requirements
+
+To run this library, you will need:
+
+* **PHP:** Version `8.0` or higher
+* **Composer:** For dependency management
 
 ## 🚀 Quick Start & Testing (No Setup Required)
 
