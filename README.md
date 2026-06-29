@@ -11,9 +11,16 @@ English | [Русский](README.ru.md)
 
 # 🎰 Gambling Traffic Rotator & Micro-Smartlink
 
-A simple, fast, and efficient PHP traffic rotator (a lightweight TDS / Smartlink alternative) designed for affiliate marketers and referral publishers in the gambling vertical.
+A simple, fast, and efficient PHP traffic rotator (a lightweight Smartlink / TDS) tailored for affiliates and media buyers in the Gambling vertical.
 
-It allows you to distribute user traffic (players) across multiple offers, casinos, or landing pages based on predefined weights (percentage ratios).
+It allows you to distribute the flow of users (players) across various offers, casinos, or landing pages based on pre-configured weights (probability ratios).
+
+## Features
+
+* **Flexible Weight Distribution:** No need to strictly match a 100% total. Add any weights (e.g., 20, 50, 70), and the traffic will be proportionally distributed.
+* **Advanced Real IP Detection:** Automatically extracts genuine user IP addresses behind **Cloudflare** (`CF-Connecting-IP`), reverse proxies like **Nginx** (`X-Forwarded-For`), or standard environments.
+* **Fail-Safe Redirects:** If HTTP headers have already been sent by your framework or server, the library automatically falls back to an HTML/JavaScript redirect instead of crashing.
+* **Optional Logging:** Logging is disabled by default. The script will not create unnecessary files or consume disk resources unless you explicitly pass a file path to the class constructor.
 
 ## 🚀 Quick Start & Testing (No Setup Required)
 
@@ -47,15 +54,36 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Gembla\TrafficRotator\Rotator;
 
-$rotator = new Rotator();
+// Check and automatically create the logs directory if it does not exist
+$logDir = __DIR__ . '/logs';
+if (!is_dir($logDir)) {
+    mkdir($logDir, 0755, true);
+}
 
-// Add casino offer URLs and their respective weights (probabilities)
-// In this example: 70% of traffic goes to Offer A, 30% goes to Offer B
-$rotator->addOffer('https://casino-brand-a.com', 70);
-$rotator->addOffer('https://casino-brand-b.com', 30);
+// Set up the dynamic path to the log file (a new file each month)
+$logPath = $logDir . '/clicks_' . date('Y-m') . '.log'; 
+$rotator = new Rotator($logPath);
 
-// Automatically selects a URL and performs an HTTP redirect (Location header)
+// Add casino offer URLs and their respective weights
+// The system automatically calculates percentages based on the total sum of all weights
+$rotator->addOffer('https://casino-brand-a.com', 20);
+$rotator->addOffer('https://casino-brand-b.com', 50);
+$rotator->addOffer('https://casino-brand-c.com', 30);
+$rotator->addOffer('https://casino-brand-aa.com', 70);
+
+// Selects a random offer based on weight, records the click to the log, and executes a secure redirect
 $rotator->redirect();
+
+```
+
+## Log Format Example
+
+Every click is stored in your specified log file in the following format:
+```text
+[2026-06-29 06:19:56] [127.0.0.1] -> https://casino-brand-aa.com | Mozilla/5.0 (Linux ...) 
+[2026-06-29 06:19:58] [127.0.0.2] -> https://casino-brand-aa.com | Mozilla/5.0 (Windows ...)
+[2026-06-29 06:19:59] [127.0.0.3] -> https://casino-brand-aa.com | Mozilla/5.0 (Linux ...)
+[2026-06-29 06:19:59] [127.0.0.4] -> https://casino-brand-b.com | Mozilla/5.0 (Linux ...)
 ```
 
 ## 📂 Project Structure

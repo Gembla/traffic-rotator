@@ -19,6 +19,19 @@ class Rotator
     /** @var array Holds offer URLs as keys and their respective weights as values */
     private array $offers = [];
 
+    /** @var string|null Path to the file where logs will be written, or null if disabled */
+    private ?string $logFilePath;
+
+    /**
+     * Class constructor to configure the rotator.
+     *
+     * @param string|null $logFilePath Path to the log file, or null to disable logging.
+     */
+    public function __construct(?string $logFilePath = null)
+    {
+        $this->logFilePath = $logFilePath;
+    }
+
     /**
      * Add a casino offer URL with its respective weight (e.g., 10, 20, 50).
      *
@@ -57,6 +70,52 @@ class Rotator
     }
 
     /**
+     * Get the real user IP address, handles Cloudflare and reverse proxies.
+     * 
+     * @return string
+     */
+    private function getRealIp(): string
+    {
+        if (!empty($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+            return $_SERVER['HTTP_CF_CONNECTING_IP'];
+        }
+
+        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ipList = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+            return trim($ipList[0]);
+        }
+
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            return $_SERVER['HTTP_CLIENT_IP'];
+        }
+
+        return $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    }
+
+    /**
+     * Record click information into the log file.
+     * 
+     * @param string $url The selected offer URL.
+     * @return void
+     */
+    private function logClick(string $url): void
+    {
+        // If logging is disabled, do nothing
+        if (empty($this->logFilePath)) {
+            return;
+        }
+
+        $date = date('Y-m-d H:i:s');
+        $ip = $this->getRealIp();
+        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'unknown';
+
+        // Format: [Date] [IP] -> Selected URL | Browser
+        $logLine = sprintf("[%s] [%s] -> %s | %s\n", $date, $ip, $url, $userAgent);
+
+        file_put_contents($this->logFilePath, $logLine, FILE_APPEND | LOCK_EX);
+    }
+
+    /**
      * Execute an HTTP redirect to the selected offer and terminate script execution.
      *
      * @return void
@@ -64,7 +123,18 @@ class Rotator
     public function redirect(): void
     {
         $url = $this->getRedirectUrl();
-        header("Location: " . $url);
-        exit;
+
+        if ($url !== '#') {
+            $this->logClick($url);
+        }
+
+        if (!headers_sent()) {
+            header("Location: " . $url);
+            exit;
+        } else {
+            echo "<meta http-equiv='refresh' content='0;url=" . htmlspecialchars($url) . "'>";
+            echo "<script>window.location.href='" . addslashes($url) . "';</script>";
+            exit;
+        }
     }
 }
