@@ -3,9 +3,9 @@
 <p align="center">
 <img src="logo.webp" alt="Gembla Traffic Rotator Logo" width="150">
 <br><br>
-<a href="https://github.com/Gembla/traffic-rotator/releases/latest"><img src="https://poser.pugx.org/gembla/traffic-rotator/v" alt="Latest Version"></a>
-  <a href="https://github.com/Gembla/traffic-rotator/releases/latest"><img src="https://poser.pugx.org/gembla/traffic-rotator/downloads" alt="Total Downloads"></a>
-  <a href="https://github.com/Gembla/traffic-rotator/blob/main/LICENSE"><img src="https://poser.pugx.org/gembla/traffic-rotator/license" alt="License"></a>
+  <a href="https://packagist.org/packages/gembla/traffic-rotator"><img src="https://img.shields.io/packagist/v/gembla/traffic-rotator?style=flat" alt="Latest Version"></a>
+  <a href="https://packagist.org/packages/gembla/traffic-rotator"><img src="https://img.shields.io/packagist/dt/gembla/traffic-rotator?style=flat" alt="Total Downloads"></a>
+  <a href="https://github.com/Gembla/traffic-rotator/blob/main/LICENSE"><img src="https://img.shields.io/packagist/l/gembla/traffic-rotator?style=flat" alt="License"></a>
   <a href="https://t.me/gembla_info"><img src="https://img.shields.io/badge/Telegram-Channel-blue?style=flat&logo=Telegram" alt="Telegram"></a>
 </p>
 
@@ -22,6 +22,12 @@
 * **Безопасные редиректы:** Если HTTP-заголовки уже были отправлены вашим фреймворком или сервером, библиотека автоматически переключится на редирект через HTML/JavaScript вместо падения с ошибкой.
 * **Опциональное логирование:** По умолчанию логирование отключено. Скрипт не будет создавать лишних файлов и тратить ресурсы диска, пока вы сами не передадите путь к файлу в конструктор класса.
 
+## Требования
+
+Для работы библиотеки вам понадобятся:
+
+* **PHP:** Версия `8.0` или выше
+* **Composer:** Для управления зависимостями
 
 ## 🚀 Быстрый запуск и проверка (без установки)
 
