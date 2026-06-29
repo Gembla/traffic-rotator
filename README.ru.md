@@ -3,9 +3,9 @@
 <p align="center">
 <img src="logo.webp" alt="Gembla Traffic Rotator Logo" width="150">
 <br><br>
-<a href="https://t.me/gembla_info"><img src="https://poser.pugx.org/gembla/traffic-rotator/v" alt="Latest Version"></a>
-  <a href="https://t.me/gembla_info"><img src="https://poser.pugx.org/gembla/traffic-rotator/downloads" alt="Total Downloads"></a>
-  <a href="https://t.me/gembla_info"><img src="https://poser.pugx.org/gembla/traffic-rotator/license" alt="License"></a>
+<a href="https://github.com/Gembla/traffic-rotator/releases/latest"><img src="https://poser.pugx.org/gembla/traffic-rotator/v" alt="Latest Version"></a>
+  <a href="https://github.com/Gembla/traffic-rotator/releases/latest"><img src="https://poser.pugx.org/gembla/traffic-rotator/downloads" alt="Total Downloads"></a>
+  <a href="https://github.com/Gembla/traffic-rotator/blob/main/LICENSE"><img src="https://poser.pugx.org/gembla/traffic-rotator/license" alt="License"></a>
   <a href="https://t.me/gembla_info"><img src="https://img.shields.io/badge/Telegram-Channel-blue?style=flat&logo=Telegram" alt="Telegram"></a>
 </p>
 
@@ -55,23 +55,30 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Gembla\TrafficRotator\Rotator;
 
-$rotator = new Rotator();
+// Проверка и автоматическое создание директории для логов, если она не существует
+$logDir = __DIR__ . '/logs';
+if (!is_dir($logDir)) {
+    mkdir($logDir, 0755, true);
+}
 
-$logPath = __DIR__ . '/logs/clicks_' . date('Y-m') . '.log'; 
+// Настройка динамического пути к лог-файлу (новый файл каждый месяц)
+$logPath = $logDir . '/clicks_' . date('Y-m') . '.log'; 
 $rotator = new Rotator($logPath);
 
 // Добавляем ссылки на офферы казино и их "вес" (вероятность)
 // В данном примере: 70% трафика уйдет на первый оффер, 30% — на второй
-$rotator->addOffer('https://casino-brand-a.com', 70);
-$rotator->addOffer('https://casino-brand-b.com', 30);
+$rotator->addOffer('https://casino-brand-a.com', 20);
+$rotator->addOffer('https://casino-brand-b.com', 50);
+$rotator->addOffer('https://casino-brand-c.com', 30);
+$rotator->addOffer('https://casino-brand-aa.com', 70);
 
 // Автоматически выбирает ссылку и делает HTTP-редирект (header Location)
 $rotator->redirect();
 ```
 
-## Log Format Example
+## Пример формата логов
 
-Every click is stored in your specified log file in the following format:
+Каждый клик сохраняется в указанном вами лог-файле в следующем формате:
 ```text
 [2026-06-29 06:19:56] [127.0.0.1] -> https://casino-brand-aa.com | Mozilla/5.0 (Linux ...) 
 [2026-06-29 06:19:58] [127.0.0.2] -> https://casino-brand-aa.com | Mozilla/5.0 (Windows ...)
