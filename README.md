@@ -3,9 +3,9 @@ English | [Русский](README.ru.md)
 <p align="center">
 <img src="logo.webp" alt="Gembla Traffic Rotator Logo" width="150">
 <br><br>
-<a href="https://t.me/gembla_info"><img src="https://poser.pugx.org/gembla/traffic-rotator/v" alt="Latest Version"></a>
-  <a href="https://t.me/gembla_info"><img src="https://poser.pugx.org/gembla/traffic-rotator/downloads" alt="Total Downloads"></a>
-  <a href="https://t.me/gembla_info"><img src="https://poser.pugx.org/gembla/traffic-rotator/license" alt="License"></a>
+<a href="https://github.com/Gembla/traffic-rotator/releases/latest"><img src="https://poser.pugx.org/gembla/traffic-rotator/v" alt="Latest Version"></a>
+  <a href="https://github.com/Gembla/traffic-rotator/releases/latest"><img src="https://poser.pugx.org/gembla/traffic-rotator/downloads" alt="Total Downloads"></a>
+  <a href="https://github.com/Gembla/traffic-rotator/blob/main/LICENSE"><img src="https://poser.pugx.org/gembla/traffic-rotator/license" alt="License"></a>
   <a href="https://t.me/gembla_info"><img src="https://img.shields.io/badge/Telegram-Channel-blue?style=flat&logo=Telegram" alt="Telegram"></a>
 </p>
 
