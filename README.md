@@ -21,6 +21,7 @@ It allows you to distribute the flow of users (players) across various offers, c
 * **Advanced Real IP Detection:** Automatically extracts genuine user IP addresses behind **Cloudflare** (`CF-Connecting-IP`), reverse proxies like **Nginx** (`X-Forwarded-For`), or standard environments.
 * **Fail-Safe Redirects:** If HTTP headers have already been sent by your framework or server, the library automatically falls back to an HTML/JavaScript redirect instead of crashing.
 * **Optional Logging:** Logging is disabled by default. The script will not create unnecessary files or consume disk resources unless you explicitly pass a file path to the class constructor.
+* **Availability Check:** Easily check if any offers are loaded before executing logic with the `$rotator->hasOffers()` method.
 
 ## ✅ Requirements
 
@@ -83,7 +84,21 @@ $rotator->redirect();
 
 ```
 
-## Log Format Example
+### Dynamic Offers Checking (Optional)
+
+If you load your offers dynamically (e.g., from a database or an external API), you can check if the rotator has any active URLs before triggering the redirect:
+
+```php
+if ($rotator->hasOffers()) {
+    $rotator->redirect();
+} else {
+    // Fallback logic if no offers are available
+    header("Location: https://your-default-landing.com");
+    exit;
+}
+```
+
+## 📝 Log Format Example
 
 Every click is stored in your specified log file in the following format:
 ```text

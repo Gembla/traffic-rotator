@@ -37,11 +37,26 @@ class Rotator
      *
      * @param string $url    The destination URL of the offer.
      * @param int    $weight The probability weight assigned to this offer.
+     * @throws \InvalidArgumentException If the weight is less than 1.
      * @return void
      */
     public function addOffer(string $url, int $weight = 1): void
     {
+        if ($weight < 1) {
+            throw new \InvalidArgumentException("Weight must be a positive integer greater than 0.");
+        }
+
         $this->offers[$url] = $weight;
+    }
+
+    /**
+     * Check if there are any offers added to the rotator.
+     * 
+     * @return bool True if at least one offer exists, false otherwise.
+     */
+    public function hasOffers(): bool
+    {
+        return !empty($this->offers);
     }
 
     /**
